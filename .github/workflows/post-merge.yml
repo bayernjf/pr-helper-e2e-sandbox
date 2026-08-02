@@ -1,0 +1,16 @@
+name: Post-merge verification
+
+on:
+  push:
+    branches: [dev, main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Post-merge verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Post-merge verification passed for $GITHUB_REF"

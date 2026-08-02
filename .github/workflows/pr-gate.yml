@@ -1,0 +1,22 @@
+name: PR gate
+
+on:
+  pull_request:
+    branches: [dev, main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: PR gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate sandbox scenario
+        run: |
+          if [ -f .pr-helper-e2e/fail-ci ]; then
+            echo "Intentional E2E gate failure"
+            exit 1
+          fi
+          echo "PR Helper sandbox gate passed"
