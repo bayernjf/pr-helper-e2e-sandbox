@@ -1,0 +1,25 @@
+name: Red gate E2E
+
+# Scoped to this branch so the failure only ever reddens the automation scenario. The gate has to fail
+# on push rather than on pull_request: the scenario needs a source branch whose checks are red while it
+# still has no pull request, so that the only condition holding auto-create back is the gate itself.
+on:
+  push:
+    branches: ['fix/red-gate-e2e']
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    name: Red gate E2E
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail on purpose
+        run: |
+          if [ -f .pr-helper-e2e/gate-green ]; then
+            echo "Marker present, letting the gate pass"
+            exit 0
+          fi
+          echo "Intentional red gate for the auto-create scenario"
+          exit 1
