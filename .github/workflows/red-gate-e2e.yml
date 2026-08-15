@@ -15,7 +15,8 @@ jobs:
     name: Red gate E2E
     runs-on: ubuntu-latest
     steps:
-      - name: Fail on purpose
+      - uses: actions/checkout@v4
+      - name: Fail unless the marker is committed
         run: |
           if [ -f .pr-helper-e2e/gate-green ]; then
             echo "Marker present, letting the gate pass"
