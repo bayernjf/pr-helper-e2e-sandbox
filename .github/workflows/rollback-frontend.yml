@@ -1,0 +1,40 @@
+name: Rollback frontend deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_run_id:
+        description: Deployment run id to roll back
+        required: true
+        type: string
+      deployment_url:
+        description: Immutable deployment URL
+        required: true
+        type: string
+      environment:
+        description: GitHub Environment
+        required: true
+        type: string
+      provider:
+        description: Deployment provider
+        required: true
+        type: choice
+        options:
+          - vercel
+          - cloudflare
+
+permissions:
+  contents: read
+
+jobs:
+  rollback:
+    name: Simulated deployment rollback
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Confirm rollback target
+        run: |
+          echo "Simulated rollback for provider: ${{ inputs.provider }}"
+          echo "Target deployment run: ${{ inputs.target_run_id }}"
+          echo "Target deployment URL: ${{ inputs.deployment_url }}"
+          echo "Rollback completed successfully."
