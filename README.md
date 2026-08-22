@@ -17,4 +17,4 @@ Public, disposable repository for validating PR Helper against real GitHub APIs.
 
 Do not store secrets, production configuration, or application code here.
 
-Pushed while the workflow was archived at 2026-08-17T16:13:39Z
+Archive acceptance run at 2026-08-17T16:04:15Z
