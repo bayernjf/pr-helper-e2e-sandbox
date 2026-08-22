@@ -16,3 +16,5 @@ Public, disposable repository for validating PR Helper against real GitHub APIs.
 - Pushes merged into `dev` or `main` run `Post-merge verification`.
 
 Do not store secrets, production configuration, or application code here.
+
+Archive acceptance run at 2026-08-17T16:04:15Z
